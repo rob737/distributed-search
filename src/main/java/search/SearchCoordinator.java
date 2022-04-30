@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public class SearchCoordinator implements OnRequestCallback {
 
     private static final String ENDPOINT = "/search";
-    private static final String BOOKS_DIRECTORY = "src\\main\\resources\\books";
+    private static final String BOOKS_DIRECTORY = "C:\\Projects\\distributed-search\\src\\main\\resources\\books";
     private final ServiceRegistry workersServiceRegistry;
     private final WebClient client;
     private final List<String> documents;

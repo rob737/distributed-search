@@ -63,11 +63,12 @@ public class ServiceRegistry implements Watcher {
     }
 
     private synchronized void updateAddresses() throws InterruptedException, KeeperException {
-        List<String> workerZnodes = zooKeeper.getChildren(WORKERS_REGISTRY_ZNODE, this);
+        List<String> workerZnodes = zooKeeper.getChildren(serviceRegistryZnode, this);
         List<String> addresses = new ArrayList<>(workerZnodes.size());
 
         for (String workerZnode : workerZnodes) {
             String workerZnodeFullPath = serviceRegistryZnode + "/" + workerZnode;
+            System.out.println("update address : " + workerZnodeFullPath);
             Stat stat = zooKeeper.exists(workerZnodeFullPath, false);
             if (stat == null)
                 continue;

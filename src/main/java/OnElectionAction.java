@@ -51,8 +51,10 @@ public class OnElectionAction implements OnElectionCallback {
     public void onWorker() {
         String currentServerAddress = null;
         SearchWorker searchWorker = new SearchWorker();
-        webServer = new WebServer(port, searchWorker);
-        webServer.startServer();
+        if (webServer == null) {
+            webServer = new WebServer(port, searchWorker);
+            webServer.startServer();
+        }
 
         try {
             currentServerAddress = String.format("http://%s:%d%s", InetAddress.getLocalHost().getCanonicalHostName(), port, searchWorker.getEndpoint());
